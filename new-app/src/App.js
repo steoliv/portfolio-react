@@ -1,29 +1,20 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => {
+  const [showImage, setShowImage] =  useState(false);
 
-    this.state = {
-      showImage: false,
-    }
+  const toggle = () => {
+    setShowImage(!showImage); //ele pega o valor atual do showImage e inverte, já que é um valor booleano
   }
 
-  toggle = () => {
-    this.setState({
-      showImage: !this.state.showImage, //ele pega o valor atual do showImage e inverte, já que é um valor booleano
-    });
-  }
-
-  render(){
     return (
       <div className="App">
         <header className="App-header">
-          <button type="button" onClick={this.toggle}>
-            {this.state.showImage ? 'Esconter imagem': 'Mostra Imagem'} </button>
-          {this.state.showImage && (
+          <button type="button" onClick={toggle}>
+            {showImage ? 'Esconter imagem': 'Mostra Imagem'} </button>
+          {showImage && (
             <img src={logo} className="App-logo" alt="logo" />
           )}
           <p>
@@ -40,7 +31,6 @@ class App extends Component {
         </header>
       </div>
     );
-  }
 }
 
 export default App;
